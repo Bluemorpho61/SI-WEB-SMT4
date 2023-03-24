@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tb_lampiran', function (Blueprint $table) {
             $table->id('id_lampiran');
             //TODO: tambah index dari tb_pengajuan_proyek (id_pengajuan)
+            $table->integer('id_pengajuan');
+            $table->index('id_pengajuan','id_pengajuan');
             $table->string('lampiran',45);
             $table->timestamps();
         });

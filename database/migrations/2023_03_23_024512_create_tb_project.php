@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('id_project');
             $table->string('nama_project');
             //TODO: tambah index dari tb_developer (id_developer)
+            $table->integer('id_developer');
+            $table->index(['id_developer'],'id_developer');
             $table->timestamps();
         });
     }

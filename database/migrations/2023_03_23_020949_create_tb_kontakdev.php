@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_kontakdev', function (Blueprint $table) {
             $table->id('id_kontakdev');
-            //TODO: TAMBAHIN INDEX id_users
+            $table->integer('id_users');
+            $table->index(['id_users'],'id_users');
             $table->char('laman_web',30);
             $table->string('email',30);
             $table->timestamps();

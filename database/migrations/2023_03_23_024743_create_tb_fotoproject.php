@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tb_foto_project', function (Blueprint $table) {
             $table->id('id_project');
             $table->string('foto');
+            $table->integer('id_developer');
+            $table->index(['id_developer'],'id_developer');
             $table->timestamps();
         });
     }

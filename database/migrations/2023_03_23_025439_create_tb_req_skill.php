@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('tb_req_skill', function (Blueprint $table) {
             $table->id('id_req_skill');
             //TODO: buat index dari tb_pengajuan (id_pengajuan)
-            //TODO: buat index dari tb_req_skill (id_skill)
+            $table->integer('id_pengajuan');
+            $table->integer('id_skill');
+            $table->index('id_pengajuan','id_pengajuan');
+            $table->index('id_skill','id_skill');
             $table->timestamps();
         });
     }

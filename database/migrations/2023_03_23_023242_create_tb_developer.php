@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('id_developer');
             $table->string('nama_developer',30);
             //TODO: tambah index dr tb_akun (id_akun)
+            $table->integer('id_users');
+            $table->index(['id_users'],'id_users');
             $table->mediumText('alamat');
             $table->string('ikon');
             $table->enum('status',['siap menerima proyek','belum tersedia']);

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tb_pengajuan_proyek', function (Blueprint $table) {
             $table->id('id_pengajuan');
             //TODO: Tambah index dri tb akun (id_akun)
+            $table->integer('id_users');
+            $table->index(['id_users'],'id_users');
             $table->string('nama_proyek',45);
             $table->integer('perkiraan_anggaran');
             $table->timestamps();
