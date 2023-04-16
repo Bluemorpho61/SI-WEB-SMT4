@@ -20,6 +20,8 @@ return new class extends Migration
             $table->mediumText('alamat');
             $table->string('ikon');
             $table->enum('status',['siap menerima proyek','belum tersedia']);
+            $table->integer('id_kota');
+            $table->index('id_kota');
             $table->timestamps();
         });
     }

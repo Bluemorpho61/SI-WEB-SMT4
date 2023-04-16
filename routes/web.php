@@ -14,5 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
+
+//Routing ke laman login/register
+Route::get('/login', function(){
+return view('login');
+})->name('auth');
+
+// Routing ke laman cara kerja (landing page)
+Route::get('/cara-kerja',function(){
+return view('landingcomp.carker');
+})->name('carker');
+
+// Routing ke laman 
+Route::get('/tentang',function(){
+return view('landingcomp.about');
+})->name('tentang');

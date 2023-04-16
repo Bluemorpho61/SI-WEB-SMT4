@@ -18,6 +18,7 @@ return new class extends Migration
             $table->index(['id_users'],'id_users');
             $table->string('nama_proyek',45);
             $table->integer('perkiraan_anggaran');
+            $table->date('perkiraan_proyek_selesai');
             $table->timestamps();
         });
     }
