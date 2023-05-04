@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tipe_user'
     ];
 
     /**
@@ -41,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function type(): Attribute
+    {
+        # code...
+        return new Attribute(
+            // get: fn($value) => ["stakeholder", "admin", "developer"][$value], //TODO: ERROR CLASS GET TIDAK DITEMUKAN
+            // get:fn ($value)=>['stakeholder','','']
+        );
+    }
 }

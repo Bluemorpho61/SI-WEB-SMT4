@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,36 +15,80 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing',[
-        'hal'=>'Wujudkan Ide Digitalisasi Anda!'
+    return view('landing', [
+        'hal' => 'Wujudkan Ide Digitalisasi Anda!'
     ]);
 });
 
-//Routing ke laman login/register
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->name('regislog');
+// stakeholder Route
+Route::middleware(['auth', 'user-access:stakeholder'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
 
-Route::get('/auth',function(){
-return view('auth.login',[
-    'hal'=>'Registrasi / Masuk'
-]);
+// Admin Route List
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+});
+
+// Developer Route List
+Route::middleware(['auth', 'user-access:developer'])->group(function () {
+    Route::get('/developer/home', [HomeController::class, 'devHome'])->name('dev.home');
+});
+
+
+
+
+Route::get('/auth', function () {
+    return view('auth.login', [
+        'hal' => 'Registrasi / Masuk'
+    ]);
 })->name('autentikasi');
+
+// Routing ke laman Register (stakeholder)
+Route::get('/auth/register', function () {
+    return view('auth.register', [
+        'hal' => 'Daftar'
+    ]);
+})->name('register');
+
+Route::get('/auth/regisdev', function () {
+    return view('auth.regisdev');
+})->name('regisdev');
 
 // Routing ke laman cara kerja (landing page)
 Route::get('/cara-kerja', function () {
-    return view('landingcomp.carker',[
-        'hal'=>'Cara Kerja'
+    return view('landingcomp.carker', [
+        'hal' => 'Cara Kerja'
     ]);
 })->name('carker');
 
-// Routing ke laman 
+// Routing ke laman tentang kami (landing page)
 Route::get('/tentang', function () {
-    return view('landingcomp.about',[
-        'hal'=>'Tentang Kami'
+    return view('landingcomp.about', [
+        'hal' => 'Tentang Kami'
     ]);
 })->name('tentang');
 
 Auth::routes();
+
+
+
+// Route::get('/register', 'RegisterController@create');
+// Route::post('/register', 'RegisterController@store');
+
+// Route::get('/login', 'SessionsController@create');
+// Route::post('/login', 'SessionsController@store');
+// Route::get('/logout', 'SessionsController@destroy');
+
+
+
+//TODO: Bwt ngerancang frontend stakeholder dashboard (HARUS DIHAPUS)
+Route::get('/testing/stakeholder', function () {
+    return view('home');
+})->setUri('tesstake.dashboard');
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

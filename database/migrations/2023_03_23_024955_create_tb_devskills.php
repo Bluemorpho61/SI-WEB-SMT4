@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_devskills', function (Blueprint $table) {
             $table->id('id_devskills');
-            //TODO: tambah index dari tb_developer (id_developer)
             $table->integer('id_developer');
-            //TODO: tambah index dari tb_skill (id_skill)
             $table->integer('id_skill');
             $table->index('id_developer','id_developer');
             $table->index('id_skill','id_skill');
