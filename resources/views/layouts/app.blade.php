@@ -73,7 +73,7 @@
                             <div class="flex space-x-6">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <a href="{{ route('carker') }}"
-                                    class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cara
+                                    class="text-black hover:bg-gray-700 active:bg-black focus:outline-none focus:ring-slate-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cara
                                     Kerja</a>
                                 <a href="{{ route('tentang') }}"
                                     class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tentang
@@ -93,7 +93,7 @@
         </nav>
     </div>
 
-    <main class="my-4">
+    <main class="my-4 h-auto">
         @yield('content')
     </main>
     {{-- <div id="app">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,12 +45,12 @@ Route::get('/auth', function () {
     ]);
 })->name('autentikasi');
 
-// Routing ke laman Register (stakeholder)
-Route::get('/auth/register', function () {
-    return view('auth.register', [
-        'hal' => 'Daftar'
-    ]);
-})->name('register');
+Route::group(['prefix' => 'auth'], function() {
+    // Routing ke laman Register (stakeholder)
+    Route::get('/register', [RegisterController::class, 'stakeholderRegister'])->name('register');
+    Route::post('/register', [RegisterController::class, 'stakeholderRegister']);
+});
+
 
 Route::get('/auth/regisdev', function () {
     return view('auth.regisdev');
@@ -86,6 +87,15 @@ Auth::routes();
 Route::get('/testing/stakeholder', function () {
     return view('home');
 })->setUri('tesstake.dashboard');
+
+//TODO: Bwt ngerancang frontend Developer dashboard (HARUS DIHAPUS)
+Route::get('/testing/dev',function(){
+    return view('devHome');
+})->setUri('tesdev.dashboard');
+
+Route::get('/testing/admin',function(){
+return view('adminHome');
+})->setUri('tesadm.dashboard');
 
 
 

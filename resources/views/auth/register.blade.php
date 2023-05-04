@@ -20,7 +20,7 @@
                         <div class="text-sm text-gray-500 mb-6">Silahkan masukkan e-mail beserta password untuk melakukan
                             pendaftaran </div>
                     </div>
-                    <form method="POST" action="/register">
+                    <form method="POST" action="/auth/register">
                         @csrf
                         <div class="flex flex-col mb-6">
                             <label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Email</label>
@@ -54,21 +54,27 @@
                             </div>
                             <label for="kon_password" class="">Konfirmasi Password</label>
                             <div class="relative">
-                                <input type="text" id="kon_password" class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded border-gray-200 focus:outline-none focus:bg-white focus:border-gray-300 error @error('kon_password') is-invalid @enderror">
+                                <input type="text" id="kon_password"
+                                    class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded border-gray-200 focus:outline-none focus:bg-white focus:border-gray-300 error @error('kon_password') is-invalid @enderror">
                             </div>
 
-                            <a href="{{route('autentikasi')}}" class="font-bold">Sudah punya akun?</a>
+                            <a href="{{ route('autentikasi') }}" class="font-bold">Sudah punya akun?</a>
 
                             <div class="flex justify-center mt-4">
-                                <button
-                                    class="bg-green-700 w-32 h-11 rounded-xl text-white font-bold text-xl" type="submit">Register</button>
+                                <button class="bg-green-700 w-32 h-11 rounded-xl text-white font-bold text-xl"
+                                    type="submit">Register</button>
                             </div>
-                        </form>
+                    </form>
 
-                            <div class="mt-4 flex justify-center">
-                                <button class="bg-blue-500 w-60 rounded-xl h-11 text-white text-lg font-bold">Daftar Sebagai
-                                    Developer</button>
-                            </div>
+                    <div class="mt-4 flex justify-center">
+                        <a type="button" href="{{route('regisdev')}}"
+                            class="bg-blue-500 w-60 rounded-xl h-11 text-white text-lg flex justify-center font-bold">
+                            <p class="mt-2">
+                                Daftar Sebagai
+                                Developer
+                            </p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

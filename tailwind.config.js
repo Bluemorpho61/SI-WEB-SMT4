@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "./resources/**/*.vue"
+    "./resources/**/*.vue",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -11,7 +12,8 @@ module.exports = {
         'logo-color':'#2CB0B9',
         'for-landing-blue':'#44A4DA',
         'for-stakeholder-button':'#4CC9F0',
-        'carker-color':'#90E0EF'
+        'carker-color':'#90E0EF',
+        'for-sidebar':'#03045E'
       },
       fontFamily:{
         'Roboto':['Roboto','sans-serif'],
@@ -22,6 +24,8 @@ module.exports = {
     },
   },
   plugins: [
+    require('flowbite/plugin')
   ],
+  darkMode:'class',
 }
 

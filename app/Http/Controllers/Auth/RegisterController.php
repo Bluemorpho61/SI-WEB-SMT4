@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Request;
+use App\Enums\RoleList;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -57,21 +58,43 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function stakeholderRegister(Request $request)
+    {
+        if($request->isMethod('POST')) {
+            return $this->create($request, RoleList::STAKEHOLDER);
+        }
+
+        return view('auth.register', [
+            'hal' => 'Daftar'
+        ]);
+    }
+
+    public function developerRegister(Request $request)
+    {
+        if($request->isMethod('POST')) {
+            return $this->create($request, RoleList::DEVELOPER);
+        }
+
+        return view('auth.register', [
+            'hal' => 'Daftar'
+        ]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  \Illuminate\Http\Request  $data
      * @return \App\Models\User
      */
-    protected function create(Request $data)
+    protected function create(Request $data, RoleList $role)
     {
-        dd($data);
-        
+
         return User::create([
-            'name' => $data['name'],
+            'nama' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'tipe_user' => $data['1']
+            'tipe_user' => $role
+
             //TODO: Lanjut bikin controller bwt multi user. Link: https://www.itsolutionstuff.com/post/laravel-9-multi-auth-create-multiple-authentication-in-laravelexample.html
         ]);
     }
