@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StakeholderController;
+use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,21 +27,43 @@ Route::get('/', function () {
     ]);
 });
 
-// stakeholder Route
-Route::middleware(['auth', 'user-access:stakeholder'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::group(['middleware'=>'guest'],function(){
+//     Route::get('/',[HomeController::class,'keLogin'])->name('login');
+//     Route::post('/',[HomeController::class,'login']);
+// });
+
+Route::post('/login',[LoginController::class,'login'])->name('login');
+
+
+// Untuk semua registered user
+Route::group(['middleware'=>['auth','tipe_user:0,1,2']],function(){
+    Route::post('/logout',[HomeController::class,'logout']);
+    Route::get('/redirect',[HomeController::class,'cek']);
+})->name('verify');
+
+// Untuk Stakeholder
+Route::group(['middleware'=>['auth', 'tipe_user:0']],function(){
+    Route::get('/stake',[StakeholderController::class,'index']);
 });
 
-// Admin Route List
-Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+// Untuk Admin
+Route::group(['middleware'=>['auth','tipe_user:1']],function(){
+    Route::get('/admin',[AdminController::class,'index']);
 });
 
-// Developer Route List
-Route::middleware(['auth', 'user-access:developer'])->group(function () {
-    Route::get('/developer/home', [HomeController::class, 'devHome'])->name('dev.home');
+// Untuk Developer
+Route::group(['middleware'=>['auth','tipe_user:2']],function(){
+    Route::get('/developer',[DeveloperController::class,'index']);
 });
 
+
+
+
+
+
+Route::get('/admin', [AdminController::class,'index'])->name('admin-home');
+Route::get('/dev',[DeveloperController::class,'index'])->name('dev-home');
+Route::get('/stake',[StakeholderController::class,'index'])->name('stake-home');
 
 
 
@@ -49,8 +77,13 @@ Route::group(['prefix' => 'auth'], function() {
     // Routing ke laman Register (stakeholder)
     Route::get('/register', [RegisterController::class, 'stakeholderRegister'])->name('register');
     Route::post('/register', [RegisterController::class, 'stakeholderRegister']);
-});
+    Route::get('/regisdev',[RegisterController::class, 'developerRegister'])->name('regisdev');
+    Route::post('/regisdev',[RegisterController::class, 'developerRegister']);
 
+    Route::get('/auth',[LoginController::class,'login']);
+    Route::post('/auth',[LoginController::class,'login']);
+    
+});
 
 Route::get('/auth/regisdev', function () {
     return view('auth.regisdev');
@@ -73,16 +106,6 @@ Route::get('/tentang', function () {
 Auth::routes();
 
 
-
-// Route::get('/register', 'RegisterController@create');
-// Route::post('/register', 'RegisterController@store');
-
-// Route::get('/login', 'SessionsController@create');
-// Route::post('/login', 'SessionsController@store');
-// Route::get('/logout', 'SessionsController@destroy');
-
-
-
 //TODO: Bwt ngerancang frontend stakeholder dashboard (HARUS DIHAPUS)
 Route::get('/testing/stakeholder', function () {
     return view('home');
@@ -101,4 +124,4 @@ return view('adminHome');
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::GET('/home', [App\Http\Controllers\HomeController::class, 'login'])->name('home');

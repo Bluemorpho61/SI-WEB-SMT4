@@ -14,28 +14,31 @@ class CreateUserSeeder extends Seeder
     public function run(): void
     {
         //
-        $users =[
-            'nama'=>'Firdaus Al Kindi',
-            'email'=>'vanda10.dava@gmail.com',
-            'password'=>'12345678',
-            'tipe_user'=>'0'
-        ];
-        [
-            'nama'=>'Cok Nggatheli',
-            'email'=>'lilkanjut@gmail.com',
-            'password'=>'12345678',
-            'tipe_user'=>'1'
-        ];
-        [
-            'nama'=>'Kirik',
-            'email'=>'haha@gmail.com',
-            'password'=>'12345678',
-            'tipe_user'=>'2'
-        ];
 
-        foreach ($users as $key =>$user) {
+
             # code...
-            User::create($user[$key]);
-        }
+            User::create([
+                [
+                    'nama'=>'Firdaus Al Kindi',
+                    'email'=>'vanda10.dava@gmail.com',
+                    'password'=>'12345678',
+                    'tipe_user'=>'0'
+                ]
+                ,
+                [
+                    'nama'=>'Cok Nggatheli',
+                    'email'=>'lilkanjut@gmail.com',
+                    'password'=>'12345678',
+                    'tipe_user'=>'1'
+                ]
+                ,
+                [
+                    'nama'=>'Cok Nggatheli',
+                    'email'=>'lilkanjut@gmail.com',
+                    'password'=>'12345678',
+                    'tipe_user'=>'1'
+                ]
+            ]
+            );
     }
 }

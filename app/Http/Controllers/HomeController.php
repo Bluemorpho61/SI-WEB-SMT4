@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleList;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +27,58 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+
+    public function cek()
+    {
+        if (auth()->user()->tipe_user === 0) {
+            # code...
+            return redirect('/home');
+        } else if (auth()->user()->tipe_user === 1) {
+            return redirect('/admin');
+        } else if (auth()->user()->tipe_user === 2) {
+            return redirect('/developer');
+        }
+    }
+
+    public function keLogin(Request $request)
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($input)) {
+            # code...
+            $request->session()->regenerate();
+            if (auth()->user()->tipe_user === RoleList::ADMIN) {
+                # code...
+                return redirect()->intended('/admin');
+            } else if (auth()->user()->tipe_user === RoleList::DEVELOPER) {
+                # code...
+                return redirect()->intended('/developer');
+            } else {
+                return redirect()->intended('/stake');
+            }
+        } else {
+            return back()->with('error', 'email dan password salah');
+        }
+
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
     public function adminHome()
     {
         return view('adminHome');

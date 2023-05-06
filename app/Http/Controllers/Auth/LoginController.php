@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\RoleList;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
@@ -41,35 +45,36 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $input = $request->all();
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
+      
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
         ]);
 
-        // if (auth()->attempt(array('email'=>$input['email'],'password'=>$input['password'])) {
-        //     # code...
-        //     if (condition) {
-        //         # code...
-        //     }
-        // }
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            # code...
-            if (auth()->user()->type == 'admin') {
-                # code...
-                return redirect()->route('admin.home');
-            } elseif (auth()->user()->type == 'stakeholder') {
-                # code...
-                return redirect()->route('home');
-            } elseif (auth()->user()->type == 'developer') {
-                # code...
-                return redirect()->route('dev.home');
-            } else {
+        $user = User::where('email', $request->email)->first();
 
-                return redirect()->route('home');
-            }
-        } else {
-            return redirect()->route('auth')->with('error', 'Email/password salah');
+        if (!$user) {
+            # code...
+            return back()->withErrors(['email' => 'Akun tidak ditemukan'])->withInput();
         }
+        if (!Hash::check($request->password, $user->password)) {
+            # code...
+            return back()->withErrors(['email' => 'Email dan password salah']);
+        }
+        $routeName = match(true) {
+            $user->tipe_user == (RoleList::STAKEHOLDER)->value => 'stake-home',
+            $user->tipe_user == (RoleList::ADMIN)->value => 'admin-home',
+            $user->tipe_user == (RoleList::DEVELOPER)->value => 'dev-home',
+            default => null,
+        };
+
+        Auth::login($user);
+        
+        if(is_null($routeName)) {
+            return redirect()->back()->with('error', 'Silahkan login untuk melanjutkan!');
+        }
+
+        return to_route($routeName);
+ 
     }
 }

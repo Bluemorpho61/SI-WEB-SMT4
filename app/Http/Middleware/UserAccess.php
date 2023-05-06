@@ -13,13 +13,13 @@ class UserAccess
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $userType): Response
+    public function handle(Request $request, Closure $next, $tipe_user)
     {
-        if (auth()->user()->type==$userType) {
+        if (in_array(auth()->user()->tipe_user,$tipe_user)) {
             # code...
             return $next($request);
         }
-        return response()->json(['Mohon maaf, anda tidak mendapat izin akes ke laman ini']);
+        return redirect('/redirect');
         // return response()->view('');
         // return $next($request);
     }

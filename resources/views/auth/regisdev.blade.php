@@ -20,7 +20,7 @@
                         <div class="text-sm text-white mb-6">Silahkan masukkan e-mail beserta password untuk melakukan
                             pendaftaran </div>
                     </div>
-                    <form method="POST" action="/register">
+                    <form method="POST" action="/auth/regisdev">
                         @csrf
                         <div class="flex flex-col">
                             <label for="tim" class="mb-1 text-xs sm:text-sm tracking-wide ">Nama Tim Developer</label>
