@@ -38,9 +38,10 @@
                     <a href="/" class="flex ml-2 md:mr-24">
                         <span
                             class="self-center text-logo-color text-xl font-bold sm:text-2xl whitespace-nowrap dark:text-white">DevHunt_</span>
-                            <p class="ml-3 mt-2 text-blue-800">Administrator</p>
+                        <p class="ml-3 mt-2 text-blue-800">Administrator</p>
                     </a>
-                    
+
+
                 </div>
                 <div class="flex items-center">
                     <div class="flex items-center ml-3">
@@ -58,22 +59,25 @@
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Bromo Dev.Team
+                                    {{Auth::user()->nama}}
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
+                                    {{Auth::user()->email}}
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
                                 <li>
-                                    <a href="#"
+                                    <a href="{{route('peng-adm')}}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Pengaturan</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Keluar</a>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Keluar</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -82,42 +86,53 @@
             </div>
         </div>
     </nav>
-  
-    <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-    aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-blue-500 dark:bg-gray-800">
-        <ul class="space-y-2 mt-36 font-bold  text-white font-sans">
-            <li>
-                <a href="#"
-                    class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
-                    <span class="ml-3">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                    class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
-  
-                    <span class="flex-1 ml-3 whitespace-nowrap">Cari Proyek</span>
-                    <span
-                        class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">100+</span>
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                    class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
-                    <span class="flex-1 ml-3 whitespace-nowrap">Daftar Proyek</span>
-                    <span
-                        class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-  </aside>
 
-  <div class="p-4">
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-blue-500 dark:bg-gray-800">
+            <ul class="space-y-2 mt-36 font-bold  text-white font-sans">
+                <li>
+                    <a href="{{ route('admin-home') }}"
+                        class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('kel-user') }}"
+                        class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700 focus:ring-4 ring-purple-400 @if (Route::currentRouteName() == 'kel-user') active:ring-4 active:ring-purple-400 @endif">
+
+                        <span class="flex-1 ml-3 whitespace-nowrap">Kelola User</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('lihat') }}"
+                        class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Aduan</span>
+                        <span
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('tel-proyek')}}"
+                        class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Telusuri Proyek</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('tel-tim')}}"
+                        class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Telusuri Tim Developer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="p-4">
         @yield('content-adm')
-  </div>
+    </div>
 
 </body>
 

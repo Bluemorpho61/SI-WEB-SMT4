@@ -43,9 +43,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function authenticated(Request $request, $user)
+    {
+        if (Auth::check()) {
+            # code...
+            if ($user->tipe_user == (RoleList::STAKEHOLDER)->value) {
+                return redirect()->route('stake-home');
+            } else if ($user->tipe_user == (RoleList::ADMIN)->value) {
+                return redirect()->route('admin-home');
+            } else if ($user->tipe_user == (RoleList::DEVELOPER)->value) {
+                return redirect()->route('dev-home');
+            }
+        }
+    }
+
     public function login(Request $request)
     {
-      
+
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -61,20 +75,28 @@ class LoginController extends Controller
             # code...
             return back()->withErrors(['email' => 'Email dan password salah']);
         }
-        $routeName = match(true) {
+        $routeName = match (true) {
             $user->tipe_user == (RoleList::STAKEHOLDER)->value => 'stake-home',
             $user->tipe_user == (RoleList::ADMIN)->value => 'admin-home',
             $user->tipe_user == (RoleList::DEVELOPER)->value => 'dev-home',
+
             default => null,
         };
 
         Auth::login($user);
-        
-        if(is_null($routeName)) {
+
+        if (is_null($routeName)) {
             return redirect()->back()->with('error', 'Silahkan login untuk melanjutkan!');
         }
 
         return to_route($routeName);
- 
+
+    }
+
+    public function stayLogged()
+    {
+        if (condition) {
+            # code...
+        }
     }
 }

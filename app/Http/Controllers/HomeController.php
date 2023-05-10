@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\RoleList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,8 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+    
 
 
     public function cek()
@@ -74,7 +77,7 @@ class HomeController extends Controller
 
     public function logout(Request $request)
     {
-        auth()->logout();
+        Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');

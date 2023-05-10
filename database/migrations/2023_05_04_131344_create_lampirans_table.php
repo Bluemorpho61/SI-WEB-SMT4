@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('lampirans', function (Blueprint $table) {
             $table->id();
+            // $table->bigInteger('pengajuan_id')->unsigned();
+            // $table->foreign('pengajuan_id')->references('id')->on('pengajuans');
             $table->string('lampiran');
             $table->timestamps();
         });
+        
     }
 
     /**

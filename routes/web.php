@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StakeholderController;
 use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,38 +33,43 @@ Route::get('/', function () {
 //     Route::post('/',[HomeController::class,'login']);
 // });
 
-Route::post('/login',[LoginController::class,'login'])->name('login');
+Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
 
 
-// Untuk semua registered user
-Route::group(['middleware'=>['auth','tipe_user:0,1,2']],function(){
-    Route::post('/logout',[HomeController::class,'logout']);
-    Route::get('/redirect',[HomeController::class,'cek']);
-})->name('verify');
 
-// Untuk Stakeholder
-Route::group(['middleware'=>['auth', 'tipe_user:0']],function(){
-    Route::get('/stake',[StakeholderController::class,'index']);
+
+
+
+// Routing untuk admin
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/kelola-user', [AdminController::class, 'showKelolaUser'])->name('kel-user');
+    Route::get('/lihat-proyek', [AdminController::class, 'showLihatSemua'])->name('lihat');
+    Route::get('/pengaturan', [AdminController::class, 'showPengaturan'])->name('peng-adm');
+    Route::get('/telusuri-proyek', [AdminController::class, 'showTelusurProyek'])->name('tel-proyek');
+    Route::get('/telusuri-dev', [AdminController::class, 'telusuriTim'])->name('tel-tim');
 });
 
-// Untuk Admin
-Route::group(['middleware'=>['auth','tipe_user:1']],function(){
-    Route::get('/admin',[AdminController::class,'index']);
+// Routing untuk developer
+Route::group(['prefix' => 'dev'], function () {
+    Route::get('/cari-proyek', [DeveloperController::class, 'showCari'])->name('car-pro');
+    Route::get('/daftar-proyek', [DeveloperController::class, 'daftarPro'])->name('daf-pro');
+    Route::get('/profil-tim', [DeveloperController::class, 'showTim'])->name('show-tim');
+
 });
 
-// Untuk Developer
-Route::group(['middleware'=>['auth','tipe_user:2']],function(){
-    Route::get('/developer',[DeveloperController::class,'index']);
+// Routing untuk Stakeholder
+Route::group(['prefix' => 'stake'], function () {
+    Route::get('/daftar-proyek', [StakeholderController::class, 'showDaftarProy'])->name('dafpro-stake');
+    Route::get('/kotak-masuk', [StakeholderController::class, 'showKotakMasuk'])->name('kotak-m');
+    Route::get('/buat-proyek', [StakeholderController::class, 'buatProyek'])->name('buat-pro');
+    Route::get('/pengaturan', [StakeholderController::class,'showPengaturan'])->name('peng-stake');
 });
 
 
 
-
-
-
-Route::get('/admin', [AdminController::class,'index'])->name('admin-home');
-Route::get('/dev',[DeveloperController::class,'index'])->name('dev-home');
-Route::get('/stake',[StakeholderController::class,'index'])->name('stake-home');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
+Route::get('/dev', [DeveloperController::class, 'index'])->name('dev-home');
+Route::get('/stake', [StakeholderController::class, 'index'])->name('stake-home');
 
 
 
@@ -73,17 +79,20 @@ Route::get('/auth', function () {
     ]);
 })->name('autentikasi');
 
-Route::group(['prefix' => 'auth'], function() {
+Route::group(['prefix' => 'auth'], function () {
     // Routing ke laman Register (stakeholder)
     Route::get('/register', [RegisterController::class, 'stakeholderRegister'])->name('register');
     Route::post('/register', [RegisterController::class, 'stakeholderRegister']);
-    Route::get('/regisdev',[RegisterController::class, 'developerRegister'])->name('regisdev');
-    Route::post('/regisdev',[RegisterController::class, 'developerRegister']);
+    Route::get('/regisdev', [RegisterController::class, 'developerRegister'])->name('regisdev');
+    Route::post('/regisdev', [RegisterController::class, 'developerRegister']);
 
-    Route::get('/auth',[LoginController::class,'login']);
-    Route::post('/auth',[LoginController::class,'login']);
-    
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+    // Route::get('/auth',[LoginController::class,'login']);
+    // Route::post('/auth',[LoginController::class,'login']);
+
 });
+
 
 Route::get('/auth/regisdev', function () {
     return view('auth.regisdev');
@@ -112,12 +121,12 @@ Route::get('/testing/stakeholder', function () {
 })->setUri('tesstake.dashboard');
 
 //TODO: Bwt ngerancang frontend Developer dashboard (HARUS DIHAPUS)
-Route::get('/testing/dev',function(){
+Route::get('/testing/dev', function () {
     return view('devHome');
 })->setUri('tesdev.dashboard');
 
-Route::get('/testing/admin',function(){
-return view('adminHome');
+Route::get('/testing/admin', function () {
+    return view('adminHome');
 })->setUri('tesadm.dashboard');
 
 

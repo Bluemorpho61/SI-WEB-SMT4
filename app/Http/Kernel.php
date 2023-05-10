@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\UserAcces;
+use App\Http\Middleware\UserTypeRedirect;
 use App\Http\Middleware\ValidateSignature;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('kontak_devs', function (Blueprint $table) {
             $table->id();
             $table->string('laman_web');
+            // $table->unsignedBigInteger('developer_id');
+            // $table->foreign('developer_id')->references('id')->on('developervs');
             $table->string('email');
             $table->timestamps();
         });

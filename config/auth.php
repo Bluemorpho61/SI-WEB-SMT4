@@ -40,6 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+    
     ],
 
     /*
@@ -63,15 +64,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-            'table'=>'tb_users'
+            'table' => 'tb_users'
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

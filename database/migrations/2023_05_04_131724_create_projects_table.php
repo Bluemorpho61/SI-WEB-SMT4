@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_project');
             $table->string('klien');
+            $table->unsignedBigInteger('developer_id');
+            $table->foreign('developer_id')->references('id')->on('developervs');
             $table->timestamps();
         });
     }

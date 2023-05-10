@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('dev_skills', function (Blueprint $table) {
             $table->id();
+            // $table->unsignedBigInteger('skill_id');
+            // $table->foreign('skill_id')->references('id')->on('skills');
             $table->timestamps();
         });
     }

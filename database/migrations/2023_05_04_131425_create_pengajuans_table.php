@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_proyek');
-            $table->integer('perkiraan_anggaran');
-            $table->date('perkiraan_proyek_selesai');
+            $table->date('jangka_deadline');
+            $table->mediumText('deskripsi');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id_users')->on('users');
             $table->timestamps();
         });
     }

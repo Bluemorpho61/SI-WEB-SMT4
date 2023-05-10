@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserAccess
@@ -15,12 +17,13 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $tipe_user)
     {
-        if (in_array(auth()->user()->tipe_user,$tipe_user)) {
-            # code...
-            return $next($request);
-        }
-        return redirect('/redirect');
-        // return response()->view('');
-        // return $next($request);
+        // if (session('id_user')) {
+        //     # code...
+        //     $user =User::find(session('id_user'));
+        //     if ($user) {
+        //         # code...
+        //         Auth::login($user);
+        //     }
+        // }
     }
 }

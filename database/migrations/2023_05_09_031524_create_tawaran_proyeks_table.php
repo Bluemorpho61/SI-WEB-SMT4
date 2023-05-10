@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('developervs', function (Blueprint $table) {
+        Schema::create('tawaran_proyeks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_developer');
-            $table->mediumText('alamat');
-            $table->string('ikon');
+            // $table->
             $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('pengajuan_id');
+            $table->integer('besaran_bid');
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans');
             $table->foreign('users_id')->references('id_users')->on('users');
-            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('developervs');
+        Schema::dropIfExists('tawaran_proyeks');
     }
 };

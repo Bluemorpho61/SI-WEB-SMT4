@@ -20,7 +20,7 @@
                         <div class="text-sm text-gray-500 mb-6">Silahkan masukkan E-Mail beserta password yang telah anda
                             daftarkan sebelumnya</div>
                     </div>
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="/login" method="POST">
                         @csrf
                         <div class="flex flex-col mb-6">
                             <div class="relative">
@@ -46,11 +46,9 @@
                                 <input id="password" type="password" placeholder="Password"
                                     class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded border border-gray-200 focus:outline-none focus:bg-white focus:border-gray-300 @error('password') is-invalid @enderror"
                                     name="password" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="font-bold" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @if ($errors->has('password'))
+                                        <span class="text-red-600">{{$errors->first('password')}}</span>
+                                    @endif
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                     <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
@@ -60,6 +58,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="mt-4">
                             <a href="{{ route('password.request') }}"

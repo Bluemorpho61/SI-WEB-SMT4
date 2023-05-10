@@ -40,6 +40,10 @@
                             class="self-center text-logo-color text-xl font-bold sm:text-2xl whitespace-nowrap dark:text-white">DevHunt_</span>
                         <p class="ml-3 mt-2 text-blue-800">developer</p>
                     </a>
+                    <div class="flex justify-end">
+                        <a type="button" href="{{route('show-tim')}}"
+                            class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Profil Tim</a>
+                    </div>
 
                 </div>
                 <div class="flex items-center">
@@ -58,10 +62,10 @@
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Bromo Dev.Team
+                                    {{Auth::user()->nama}}
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
+                                    {{Auth::user()->email}}
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
@@ -71,9 +75,12 @@
                                         role="menuitem">Pengaturan</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Keluar</a>
+                                    <form action="{{route('logout')}}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Keluar</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -89,13 +96,13 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-blue-500 dark:bg-gray-800">
             <ul class="space-y-2 mt-36 font-bold  text-white font-sans">
                 <li>
-                    <a href="#"
+                    <a href="{{route('dev-home')}}"
                         class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
                         <span class="ml-3">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{route('car-pro')}}"
                         class="flex items-center p-2 rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
 
                         <span class="flex-1 ml-3 whitespace-nowrap">Cari Proyek</span>
@@ -104,7 +111,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{route('daf-pro')}}"
                         class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
                         <span class="flex-1 ml-3 whitespace-nowrap">Daftar Proyek</span>
                         <span
