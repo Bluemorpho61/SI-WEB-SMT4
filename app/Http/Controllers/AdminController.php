@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
+use App\Models\Pengajuan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,8 @@ class AdminController extends Controller
   public function index()
   {
     $count = User::all()->count();
-    return view('adminHome', ['count' => $count]);
+    $proyek =Pengajuan::all()->count();
+    return view('adminHome', ['count' => $count,'proyek'=>$proyek]);
   }
 
   public function showKelolaUser()
@@ -34,14 +36,18 @@ class AdminController extends Controller
     return view('pages.admin.telusuritim');
   }
 
-  public function showDetailAkun()
+  public function showDetailAkun($id)
   {
-    return view('pages.admin.profiluser');
+    $user =User::query()->find($id);
+//    dd($user);
+    return view('pages.admin.profiluser',compact('user'));
   }
 
 
-  public function showPengaturan()
+  public function showPengaturan($id)
   {
+      $user =User::query()->find($id);
+      dd($user);
     return view('pages.admin.pengaturan');
   }
 }

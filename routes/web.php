@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/pengaturan', [AdminController::class, 'showPengaturan'])->name('peng-adm');
     Route::get('/telusuri-proyek', [AdminController::class, 'showTelusurProyek'])->name('tel-proyek');
     Route::get('/telusuri-dev', [AdminController::class, 'telusuriTim'])->name('tel-tim');
-    Route::get('/detail-akun',[AdminController::class,'showDetailAkun'])->name('det-ak');
+    Route::get('/detail-akun/{id}',[AdminController::class,'showDetailAkun']);
     Route::get('/delete-user',[AdminController::class,'deleteRowUser']);
 });
 
@@ -63,7 +63,7 @@ Route::group(['prefix' => 'stake'], function () {
     Route::get('/daftar-proyek', [StakeholderController::class, 'showDaftarProy'])->name('dafpro-stake');
     Route::get('/kotak-masuk', [StakeholderController::class, 'showKotakMasuk'])->name('kotak-m');
     Route::get('/buat-proyek', [StakeholderController::class, 'buatProyek'])->name('buat-pro');
-    Route::get('/pengaturan', [StakeholderController::class,'showPengaturan'])->name('peng-stake');
+    Route::get('/pengaturan/{id}', [StakeholderController::class,'showPengaturan']);
     Route::get('/detail-proyek/{id}',[StakeholderController::class,'DetailProyek']);
     Route::post('/buat-proyek/unggah',[]);
 });

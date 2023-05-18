@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\ProjectStatus;
 use App\Models\Pengajuan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,13 +39,15 @@ class StakeholderController extends Controller
 
             return view('pages.stakeholder.buatproyek');
       }
-      public function showPengaturan()
+      public function showPengaturan($id)
       {
-            return view('pages.stakeholder.pengaturan');
+            $user=User::query()->findOrFail($id);
+//            dd($user);
+            return view('pages.stakeholder.pengaturan',compact('user'));
       }
 
         public function createProject(){
-        
+
         }
       public function create(Request $data, ProjectStatus $projectStatus)
       {

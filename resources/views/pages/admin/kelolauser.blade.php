@@ -119,8 +119,8 @@
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                                     data-modal-target="popup-model" type="button"
                                                     data-modal-toggle="popup-modal">Takedown</button>
-                                            
-                                            <a href="{{ route('det-ak') }}"
+
+                                            <a href="detail-akun/{{$users->id_users}}"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline mt-2">Periksa
                                                 Profil</a>
                                             <a href="#"
@@ -129,36 +129,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Coy Corp.
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        1
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        coy@gmail.com
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Stakeholder
-                                    </td>
 
-                                    <td class="px-6 py-4">
-                                        087654773214
-
-                                    </td>
-                                    <td class="px-12 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Takedown</a>
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline mt-2">Periksa
-                                            Profil</a>
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Kirim
-                                            Pesan</a>
-                                    </td>
-                                </tr>
 
 
 
