@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('jangka_deadline');
             $table->mediumText('deskripsi');
             $table->unsignedBigInteger('users_id');
+            $table->tinyInteger('status_proyek')->default(0);
             $table->foreign('users_id')->references('id_users')->on('users');
             $table->timestamps();
         });

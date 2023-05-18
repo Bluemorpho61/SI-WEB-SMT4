@@ -7,6 +7,7 @@ use App\Models\Pengajuan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use ProjectStatus;
 
 class PengajuanSeeder extends Seeder
 {
@@ -39,18 +40,21 @@ class PengajuanSeeder extends Seeder
             'nama_proyek' => 'Point of Sale',
             'jangka_deadline' => now()->toDate(),
             'users_id'=>2,
+            'status_proyek'=>\App\Enums\ProjectStatus::MENUNGGU_TAWARAN,
             'deskripsi' => 'lorem ipsum dolor'
         ],
         [
             'nama_proyek' => 'Aplikasi Kasir',
             'jangka_deadline' => now()->toDate(),
             'users_id'=>2,
+            'status_proyek'=>\App\Enums\ProjectStatus::MENUNGGU_TAWARAN,
             'deskripsi' => 'lorem ipsum dolor'
         ],
         [
             'nama_proyek' => 'Profile Perusahaan',
             'jangka_deadline' => now()->toDate(),
             'users_id'=>2,
+            'status_proyek'=>\App\Enums\ProjectStatus::MENUNGGU_TAWARAN,
             'deskripsi' => 'lorem ipsum dolor'
         ]
        ]);

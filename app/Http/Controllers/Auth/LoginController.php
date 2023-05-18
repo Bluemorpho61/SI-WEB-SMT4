@@ -67,6 +67,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        
         if (!$user) {
             # code...
             return back()->withErrors(['email' => 'Akun tidak ditemukan'])->withInput();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RoleList;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -23,9 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing', [
-        'hal' => 'Wujudkan Ide Digitalisasi Anda!'
-    ]);
+    return view('landing');
 });
 
 // Route::group(['middleware'=>'guest'],function(){
@@ -47,6 +46,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/pengaturan', [AdminController::class, 'showPengaturan'])->name('peng-adm');
     Route::get('/telusuri-proyek', [AdminController::class, 'showTelusurProyek'])->name('tel-proyek');
     Route::get('/telusuri-dev', [AdminController::class, 'telusuriTim'])->name('tel-tim');
+    Route::get('/detail-akun',[AdminController::class,'showDetailAkun'])->name('det-ak');
+    Route::get('/delete-user',[AdminController::class,'deleteRowUser']);
 });
 
 // Routing untuk developer
@@ -63,6 +64,8 @@ Route::group(['prefix' => 'stake'], function () {
     Route::get('/kotak-masuk', [StakeholderController::class, 'showKotakMasuk'])->name('kotak-m');
     Route::get('/buat-proyek', [StakeholderController::class, 'buatProyek'])->name('buat-pro');
     Route::get('/pengaturan', [StakeholderController::class,'showPengaturan'])->name('peng-stake');
+    Route::get('/detail-proyek/{id}',[StakeholderController::class,'DetailProyek']);
+    Route::post('/buat-proyek/unggah',[]);
 });
 
 

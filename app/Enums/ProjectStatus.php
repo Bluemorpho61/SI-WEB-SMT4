@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Enums;
 enum ProjectStatus: int{
     case MENUNGGU_TAWARAN = 0;
     case TENGAH_DIKERJAKAN =1;

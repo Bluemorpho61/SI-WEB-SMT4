@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\RoleList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,10 @@ class HomeController extends Controller
     }
 
 
-    
+      public function countDevLanding(){
+        $count =DB::table('users')->where('tipe_user',RoleList::DEVELOPER)->count();
+        return view('landing',['count'=>$count]);
+      }
 
 
     public function cek()

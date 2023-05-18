@@ -34,6 +34,12 @@ class AdminController extends Controller
     return view('pages.admin.telusuritim');
   }
 
+  public function showDetailAkun()
+  {
+    return view('pages.admin.profiluser');
+  }
+
+
   public function showPengaturan()
   {
     return view('pages.admin.pengaturan');

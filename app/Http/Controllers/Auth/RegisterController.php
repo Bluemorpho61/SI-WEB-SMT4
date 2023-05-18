@@ -94,7 +94,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipe_user' => $role
-
+            
             //TODO: Lanjut bikin controller bwt multi user. Link: https://www.itsolutionstuff.com/post/laravel-9-multi-auth-create-multiple-authentication-in-laravelexample.html
         ]);
     }
