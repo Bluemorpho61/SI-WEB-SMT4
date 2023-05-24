@@ -43,19 +43,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(Request $request, $user)
-    {
-        if (Auth::check()) {
-            # code...
-            if ($user->tipe_user == (RoleList::STAKEHOLDER)->value) {
-                return redirect()->route('stake-home');
-            } else if ($user->tipe_user == (RoleList::ADMIN)->value) {
-                return redirect()->route('admin-home');
-            } else if ($user->tipe_user == (RoleList::DEVELOPER)->value) {
-                return redirect()->route('dev-home');
-            }
-        }
-    }
+
 
     public function login(Request $request)
     {
@@ -67,7 +55,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        
+
         if (!$user) {
             # code...
             return back()->withErrors(['email' => 'Akun tidak ditemukan'])->withInput();

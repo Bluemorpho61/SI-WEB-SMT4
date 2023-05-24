@@ -1,3 +1,4 @@
+@php use App\Enums\RoleList;use App\Models\User; @endphp
 @extends('layouts.app')
 
 @section('content')
@@ -10,7 +11,7 @@
     <div class="bg-blue-500 py-32 max-h-28 container">
         <div class="flex mx-auto border-none ">
             <div class="text-white font-bold max-w-fit text-2xl ml-8 max-h-fit">
-                Ada  tim developer yang siap membantu anda
+                Ada {{User::query()->where('tipe_user','=',RoleList::DEVELOPER)->count()}} tim developer yang siap membantu anda
             </div>
             <div class="max-w-fit border-none max-h-fit ml-44">
                 <img src="{{ asset('untuk-landing-removebg-preview.png') }}" class="object-cover h-52 w-30" alt="foto">
@@ -25,7 +26,7 @@
     </div>
 
     <section>
-        
+
     </section>
- 
+
 @endsection

@@ -71,6 +71,7 @@
                             <button class="bg-blue-700 w-32 h-11 rounded-xl text-white font-bold text-xl" name="login"
                                     type="submit">Masuk
                             </button>
+                        </div>
                     </form>
 
                     <button class="bg-green-600 w-32 h-11 rounded-xl text-white font-bold text-xl"
@@ -82,7 +83,7 @@
                        href="{{ route('regisdev') }}">
                         <p class="w-fit h-fit mt-1">
                             Daftar Sebagai
-                            Developer
+                            Developerr
                         </p>
                     </a>
                 </div>

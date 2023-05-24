@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&family=Sofia+Sans+Extra+Condensed:ital,wght@0,300;0,400;1,600&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
@@ -64,7 +65,11 @@
                         id="dropdown-user">
                         <div class="px-4 py-3" role="none">
                             <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                @if(Auth::user()->nama ==null)
+                                <p class="font-thin">nama kosong</p>
+                                @else
                                 {{Auth::user()->nama}}
+                                @endif
                             </p>
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
                                 {{Auth::user()->email}}
@@ -72,7 +77,7 @@
                         </div>
                         <ul class="py-1" role="none">
                             <li>
-                                <a href="pengaturan/{{Auth::id()}}"
+                                <a href="/stake/pengaturan/{{Auth::id()}}"
                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                    role="menuitem">Pengaturan</a>
                             </li>

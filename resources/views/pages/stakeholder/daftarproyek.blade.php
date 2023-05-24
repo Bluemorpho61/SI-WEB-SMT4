@@ -55,7 +55,7 @@
                                                 NULL
                                             </td>
                                             <td class="px-6 py-4">
-                                                <a href="{{url('#')}}" class="text-blue-500">Lihat detail</a>
+                                                <a href="detail-proyek/{{$shows->id}}" class="text-blue-500">Lihat detail</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -19,22 +19,22 @@ class CreateUserSeeder extends Seeder
         if (DB::table('users')->count()===0) {
             # code...
             DB::table('users')->insert([
-                ['nama' => 'Slamet', 'email' => 'slametgeming@gmail.com', 'password' => Hash::make('12345678'), 'tipe_user' => '2'], //Developer
+                ['nama' => 'Cahaya Technology', 'email' => 'developer@gmail.com', 'password' => Hash::make('12345678'), 'tipe_user' => '2'], //Developer
                 [
-                    'nama' => 'Burhan',
-                    'email' => 'burhangeming@gmail.com',  //Stakeholder
+                    'nama' => 'PT Anugerah',
+                    'email' => 'stakeholder@gmail.com',  //Stakeholder
                     'password' => Hash::make('12345678'),
                     'tipe_user' => '0'
                 ],
                 [
-                    'nama' => 'Bustomi',
-                    'email' => 'bustomi@gmail.com',
+                    'nama' => 'Admin',
+                    'email' => 'admin@gmail.com',
                     'password' => Hash::make('12345678'), //Admin
                     'tipe_user' => '1'
                 ],
             ]);
         }
-        
+
 
 
 

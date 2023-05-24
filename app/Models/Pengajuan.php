@@ -9,7 +9,8 @@ class Pengajuan extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_pengajuan';
+
+
     protected $fillable =[
         'nama_proyek',
         'jangka_deadline',
@@ -17,5 +18,9 @@ class Pengajuan extends Model
         'users_id',
         'status_proyek'
     ];
+
+protected $casts =[
+'created_at'=>'datetime'
+];
 
 }

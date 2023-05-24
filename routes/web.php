@@ -1,15 +1,12 @@
 <?php
 
-use App\Enums\RoleList;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SessionController;
+use App\Http\Controllers\MobileAuthController;
 use App\Http\Controllers\StakeholderController;
-use Illuminate\Auth\Events\Authenticated;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,16 +24,8 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// Route::group(['middleware'=>'guest'],function(){
-//     Route::get('/',[HomeController::class,'keLogin'])->name('login');
-//     Route::post('/',[HomeController::class,'login']);
-// });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
-
-
-
-
 
 
 // Routing untuk admin
@@ -46,8 +35,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/pengaturan', [AdminController::class, 'showPengaturan'])->name('peng-adm');
     Route::get('/telusuri-proyek', [AdminController::class, 'showTelusurProyek'])->name('tel-proyek');
     Route::get('/telusuri-dev', [AdminController::class, 'telusuriTim'])->name('tel-tim');
-    Route::get('/detail-akun/{id}',[AdminController::class,'showDetailAkun']);
-    Route::get('/delete-user',[AdminController::class,'deleteRowUser']);
+    Route::get('/detail-akun/{id}', [AdminController::class, 'showDetailAkun']);
+    Route::get('/delete-user', [AdminController::class, 'deleteRowUser']);
 });
 
 // Routing untuk developer
@@ -58,21 +47,24 @@ Route::group(['prefix' => 'dev'], function () {
 
 });
 
+
 // Routing untuk Stakeholder
 Route::group(['prefix' => 'stake'], function () {
     Route::get('/daftar-proyek', [StakeholderController::class, 'showDaftarProy'])->name('dafpro-stake');
+    Route::post('/post-proyek', [StakeholderController::class, 'postProyek']);
     Route::get('/kotak-masuk', [StakeholderController::class, 'showKotakMasuk'])->name('kotak-m');
     Route::get('/buat-proyek', [StakeholderController::class, 'buatProyek'])->name('buat-pro');
-    Route::get('/pengaturan/{id}', [StakeholderController::class,'showPengaturan']);
-    Route::get('/detail-proyek/{id}',[StakeholderController::class,'DetailProyek']);
-    Route::post('/buat-proyek/unggah',[]);
+    Route::post('/pengaturan/{id}', [StakeholderController::class, 'showPengaturan']);
+    Route::POST('/post-profile-update/{id}', [StakeholderController::class, 'updateProfile']);
+    Route::get('/detail-proyek/{id}', [StakeholderController::class, 'DetailProyek']);
 });
 
-
-
+Route::group(['middleware'=>'auth'],function (){
 Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
 Route::get('/dev', [DeveloperController::class, 'index'])->name('dev-home');
-Route::get('/stake', [StakeholderController::class, 'index'])->name('stake-home');
+Route::get('/stake', [StakeholderController::class, 'index'])->name('stake-home')->middleware('auth');
+});
+
 
 
 
@@ -84,17 +76,17 @@ Route::get('/auth', function () {
 
 Route::group(['prefix' => 'auth'], function () {
     // Routing ke laman Register (stakeholder)
-    Route::get('/register', [RegisterController::class, 'stakeholderRegister'])->name('register');
+    Route::get('/register', [RegisterController::class, 'stakeholderRegister']);
     Route::post('/register', [RegisterController::class, 'stakeholderRegister']);
     Route::get('/regisdev', [RegisterController::class, 'developerRegister'])->name('regisdev');
     Route::post('/regisdev', [RegisterController::class, 'developerRegister']);
 
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-    // Route::get('/auth',[LoginController::class,'login']);
-    // Route::post('/auth',[LoginController::class,'login']);
+    Route::middleware('auth')->group(function () {
+        Route::post('/login', [LoginController::class, 'login']);
+    });
 
 });
+
 
 
 Route::get('/auth/regisdev', function () {
@@ -136,4 +128,3 @@ Route::get('/testing/admin', function () {
 
 
 
-// Route::GET('/home', [App\Http\Controllers\HomeController::class, 'login'])->name('home');

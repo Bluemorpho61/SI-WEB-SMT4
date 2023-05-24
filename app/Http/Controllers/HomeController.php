@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RoleList;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,12 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function hitungDev()
+    {
+        $jumlahUsr=User::query()->where('tipe_user','=','1')->count();
+        dd($jumlahUsr);
+        return view('landing',compact($jumlahUsr));
+    }
     /**
      * Show the application dashboard.
      *
@@ -29,11 +36,6 @@ class HomeController extends Controller
         return view('home');
     }
 
-
-      public function countDevLanding(){
-        $count =DB::table('users')->where('tipe_user',RoleList::DEVELOPER)->count();
-        return view('landing',['count'=>$count]);
-      }
 
 
     public function cek()
