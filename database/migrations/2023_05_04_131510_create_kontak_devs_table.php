@@ -10,12 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
+
     {
-        Schema::create('tb_foto_project', function (Blueprint $table) {
-            $table->id('id_project');
-            $table->string('foto');
-            $table->integer('id_developer');
-            $table->index(['id_developer'],'id_developer');
+        Schema::create('kontak_devs', function (Blueprint $table) {
+            $table->id();
+            $table->string('laman_web');
+             $table->unsignedBigInteger('developer_id');
+             $table->foreign('developer_id')->references('id')->on('developervs')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_fotoproject');
+        Schema::dropIfExists('kontak_devs');
     }
 };

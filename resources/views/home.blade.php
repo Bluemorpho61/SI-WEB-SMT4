@@ -26,19 +26,19 @@
                     <p class="text-center">{{$proyekYangMen}}</p>
                 </div>
             </div>
-            <div class="flex items-center justify-center py-3 h-auto mb-4 rounded bg-gray-50 dark:bg-gray-800">
+            <div class="flex items-center justify-center py-3 h-auto mb-4 rounded bg-blue-500 dark:bg-gray-800">
 
                 @if(Auth::user()->nama ==null)
                     <div
-                        class="object-cover max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        class="object-cover max-w-sm p-6 bg-blue-900 border text-white border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <img src="{{asset('/assets/warning.png')}}" alt="warning" class="w-10 h-10 mb-2">
                         <a href="#">
-                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Identitas
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight">Identitas
                                 anda masih kosong</h5>
                         </a>
-                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Silahkan klik link berikut, dan
+                        <p class="mb-3 font-normal">Silahkan klik link berikut, dan
                             lengkapi identitas anda</p>
-                        <a href="#" class="inline-flex items-center text-blue-600 hover:underline">
+                        <a href="/stake/pengaturan/{{Auth::id()}}" class="inline-flex items-center text-blue-600 hover:underline">
                             Klik Disini
                         </a>
                     </div>

@@ -23,4 +23,5 @@ Route::post('login',[MobileAuthController::class,'login']);
 
 Route::get('tes-api',[MobileAuthController::class, 'getUser']);
 
+Route::post('register',[MobileAuthController::class,'Register']);
 

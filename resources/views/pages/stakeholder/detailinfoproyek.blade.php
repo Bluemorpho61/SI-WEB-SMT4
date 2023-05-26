@@ -9,26 +9,28 @@
                     <p class="ml-3 font-thin text-sm">Diposting pada: {{$pengajuan->created_at}} </p>
                 </div>
 
-
                 <div class="h-fit ml-11 space-x-1 mt-5">
-                    <button type="button"
-                            class="text-white h-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <a href="#" type="button"
+                       class="text-white h-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         Edit info proyek
-                    </button>
-                    <button type="button"
-                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                        Batalkan Proyek
-                    </button>
+                    </a>
+                    <form action="/stake/takedown-pengajuan/{{$pengajuan->id}}" method="post"
+                          onsubmit="return confirm('Apakah anda yakin ingin membatalkan pengajuan proyek ini?')">
+                        @csrf
+                        <button type="submit"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                            Batalkan Proyek
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="flex flex-row "><h1 class="text-2xl font-bold mt-14">Deskripsi</h1>
 
-            </div>
+            <div class="flex flex-row "><h1 class="text-2xl font-bold mt-14">Deskripsi</h1></div>
             <div class="flex  flex-col  h-48 mb-4  overflow-y-scroll rounded bg-blue-800 text-white dark:bg-gray-800">
                 <p class="p-6">{{$pengajuan->deskripsi}}</p>
             </div>
 
-            <h1 class="text-2xl font-bold mt-14 w-fit">Daftar Tawaran</h1>
+            <h1 class="text-2xl font-bold mt-14 w-fit">Daftar Tawaran Proyek</h1>
             <div class="flex items-center h-auto justify-center h-48 mb-4 rounded ">
 
                 <div class="mt-5 relative object-cover overflow-x-auto shadow-md sm:rounded-lg">
@@ -36,109 +38,42 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Tim Developer
+                                {{$dataProyek->nama_proyek}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Color
+                                Besaran Bid
 
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Category
+                                Tanggal Penawaran
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
-                            </th>
-                            <th scope="col" class="px-6 py-3">
+
+                            <th scope="col" class="px-6 py-3 text-center">
                                 Action
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Anonim Dev.
                             </th>
                             <td class="px-6 py-4">
-                                Silver
+                                Rp. 3.400.000
                             </td>
                             <td class="px-6 py-4">
-                                Laptop
+                                {{now()}}
                             </td>
+
                             <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ambil
+                                    Tawaran</a>
+                                <a href="#" class="font-medium text-yellow-600">Cek Profil</a>
                             </td>
                         </tr>
-                        <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4">
-                                White
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4">
-                                $1999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Mouse 2
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                $99
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Google Pixel Phone
-                            </th>
-                            <td class="px-6 py-4">
-                                Gray
-                            </td>
-                            <td class="px-6 py-4">
-                                Phone
-                            </td>
-                            <td class="px-6 py-4">
-                                $799
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple Watch 5
-                            </th>
-                            <td class="px-6 py-4">
-                                Red
-                            </td>
-                            <td class="px-6 py-4">
-                                Wearables
-                            </td>
-                            <td class="px-6 py-4">
-                                $999
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+
+
                         </tbody>
                     </table>
                 </div>
@@ -160,4 +95,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

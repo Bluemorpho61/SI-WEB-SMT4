@@ -23,30 +23,6 @@
 
 <body class="items-center justify-center py-12 px-4">
 
-{{--Untuk testing form--}}
-{{--<h1 class="text-center text-2xl font-bold">Buat Proyek</h1>--}}
-{{--<div class="flex flex-col space-y-6 items-center justify-center mt-14">--}}
-{{--    <form action="/stake/post-proyek" method="post">--}}
-{{--        @csrf--}}
-{{--        <div class="flex">--}}
-{{--            <label for="nama_proyek">Nama Proyek</label>--}}
-{{--            <input type="text" name="nama_proyek" id="nama_proyek">--}}
-{{--        </div>--}}
-{{--        <div class="flex">--}}
-{{--            <label id="deskripsi" for="deskripsi">Deskripsi Proyek</label>--}}
-{{--            <textarea id="deskripsi" name="deskripsi">--}}
-{{--           </textarea>--}}
-{{--        </div>--}}
-{{--        <div class="flex">--}}
-{{--            <label for="deadline">Jangka Deadline</label>--}}
-{{--            <input type="date" name="jangka_deadline" id="deadline">--}}
-{{--        </div>--}}
-{{--        <button type="submit" class="p-3 bg-blue-500 text-white rounded-xl">--}}
-{{--            Buat Proyek--}}
-{{--        </button>--}}
-{{--    </form>--}}
-{{--</div>{{----}}
-
 <div
     class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover"
     style="background-image: {{ asset('assets/for-pengajuan.png') }}">

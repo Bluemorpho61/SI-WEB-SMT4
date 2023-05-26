@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_project');
             $table->string('klien');
             $table->unsignedBigInteger('developer_id');
-            $table->foreign('developer_id')->references('id')->on('developervs');
+            $table->foreign('developer_id')->references('id')->on('developervs')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

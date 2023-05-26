@@ -7,6 +7,11 @@
                 <div class="flex items-center justify-center h-24 rounded ">
                     <p class="text-2xl text-black">Daftar Proyek</p>
                 </div>
+                @if(session('dlt-pry'))
+                    <script>
+                        alert('Proyek berhasil dihapus')
+                    </script>
+                @endif
                 <div class="flex items-center justify-center h-24 rounded bg-blue-600 dark:bg-gray-800">
 
                 </div>

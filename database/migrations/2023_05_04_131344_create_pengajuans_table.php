@@ -18,7 +18,7 @@ return new class extends Migration
             $table->mediumText('deskripsi');
             $table->unsignedBigInteger('users_id');
             $table->tinyInteger('status_proyek')->default(0);
-            $table->foreign('users_id')->references('id_users')->on('users')->cascadeOnDelete();
+            $table->foreign('users_id')->references('id_users')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

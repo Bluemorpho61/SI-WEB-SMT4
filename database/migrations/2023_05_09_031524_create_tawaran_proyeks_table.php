@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('pengajuan_id');
             $table->integer('besaran_bid');
-            $table->foreign('pengajuan_id')->references('id')->on('pengajuans');
-            $table->foreign('users_id')->references('id_users')->on('users');
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('users_id')->references('id_users')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -36,14 +36,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/telusuri-proyek', [AdminController::class, 'showTelusurProyek'])->name('tel-proyek');
     Route::get('/telusuri-dev', [AdminController::class, 'telusuriTim'])->name('tel-tim');
     Route::get('/detail-akun/{id}', [AdminController::class, 'showDetailAkun']);
-    Route::get('/delete-user', [AdminController::class, 'deleteRowUser']);
+    Route::post('/takedown-user/{id}',[AdminController::class,'destroyUser']);
 });
 
 // Routing untuk developer
 Route::group(['prefix' => 'dev'], function () {
     Route::get('/cari-proyek', [DeveloperController::class, 'showCari'])->name('car-pro');
     Route::get('/daftar-proyek', [DeveloperController::class, 'daftarPro'])->name('daf-pro');
-    Route::get('/profil-tim', [DeveloperController::class, 'showTim'])->name('show-tim');
+    Route::get('/profil-tim/{id}', [DeveloperController::class, 'showTim'])->name('show-tim');
+    Route::get('/cari-proyek/detail-proyek/{id}',[DeveloperController::class,'showDetailProyek']);
+    Route::get('/pengaturan/{id}',[DeveloperController::class,'showPengaturan']);
+    Route::post('/tambah-profil-developer',[DeveloperController::class,'addDevInfo'])->name('add-dev');
 
 });
 
@@ -54,9 +57,11 @@ Route::group(['prefix' => 'stake'], function () {
     Route::post('/post-proyek', [StakeholderController::class, 'postProyek']);
     Route::get('/kotak-masuk', [StakeholderController::class, 'showKotakMasuk'])->name('kotak-m');
     Route::get('/buat-proyek', [StakeholderController::class, 'buatProyek'])->name('buat-pro');
-    Route::post('/pengaturan/{id}', [StakeholderController::class, 'showPengaturan']);
+    Route::get('/pengaturan/{id}', [StakeholderController::class, 'showPengaturan']);
     Route::POST('/post-profile-update/{id}', [StakeholderController::class, 'updateProfile']);
     Route::get('/detail-proyek/{id}', [StakeholderController::class, 'DetailProyek']);
+    Route::post('/takedown-pengajuan/{id}',[StakeholderController::class,'destroyProyek']);
+
 });
 
 Route::group(['middleware'=>'auth'],function (){

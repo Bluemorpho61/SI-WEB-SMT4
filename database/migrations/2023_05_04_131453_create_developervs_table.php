@@ -17,7 +17,7 @@ return new class extends Migration
             $table->mediumText('alamat');
             $table->string('ikon');
             $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id_users')->on('users');
+            $table->foreign('users_id')->references('id_users')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Developerv extends Model
 {
     use HasFactory;
-
-    
-    protected $table ='Developer';
-    protected $primaryKey ='id_developer';
+protected $fillable =[
+    'nama_developer',
+    'alamat',
+    'ikon',
+    'users_id',
+    'status'
+];
 }
