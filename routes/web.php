@@ -43,10 +43,11 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'dev'], function () {
     Route::get('/cari-proyek', [DeveloperController::class, 'showCari'])->name('car-pro');
     Route::get('/daftar-proyek', [DeveloperController::class, 'daftarPro'])->name('daf-pro');
-    Route::get('/profil-tim/{id}', [DeveloperController::class, 'showTim'])->name('show-tim');
+    Route::get('/profil-tim/{id}', [DeveloperController::class, 'showTim']);
     Route::get('/cari-proyek/detail-proyek/{id}',[DeveloperController::class,'showDetailProyek']);
     Route::get('/pengaturan/{id}',[DeveloperController::class,'showPengaturan']);
     Route::post('/tambah-profil-developer',[DeveloperController::class,'addDevInfo'])->name('add-dev');
+    Route::post('/tambah-penawaran/{id}',[DeveloperController::class,'pasangPenawaran']);
 
 });
 
