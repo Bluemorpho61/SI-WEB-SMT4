@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RoleList;
+use App\Models\Pengajuan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,8 @@ class MobileAuthController extends Controller
         return Response::json(['pesan'=>'Berhasil', 'code' => 200]);
     }
 
+
+
     public function Register(Request $request)
     {
         User::create([
@@ -43,7 +46,8 @@ class MobileAuthController extends Controller
         return Response::json(['Pesan'=>'Registrasi Berhasil','code'=>200]);
     }
 
-    public function GetProyekData(Request $request){
-
+    public function GetProyekData($id){
+        $dataProyek =Pengajuan::all()->where('users_id','=',$id);
+        return Response::json(['data'=>$dataProyek,'code'=>200]);
     }
 }
