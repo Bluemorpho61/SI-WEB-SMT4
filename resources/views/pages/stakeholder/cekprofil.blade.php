@@ -1,5 +1,5 @@
-@extends('layouts.sidebardev')
-@section('content-dev')
+@extends('layouts.sidebarstake')
+@section('content-stake')
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2  border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="grid grid-cols-3 gap-4 mb-4">
@@ -13,7 +13,7 @@
             <div class="flex flex-col text-white bg-purple-700 py-3 px-4  h-auto mb-4 rounded  dark:bg-gray-800">
                 <div class="flex flex-row"><img class="rounded-full w-40 h-40" src="{{asset('profile.png')}}"
                                                 alt="image description">
-                    <h1 class="font-bold text-2xl ml-3 h-fit">{{$devTeam[0]->nama_developer}}</h1>
+                    <h1 class="font-bold text-2xl ml-3 h-fit">Nama Developer</h1>
                     <div class=" p-2 w-64 h-auto self-center -ml-28 ">
                         <p class="font-semibold">Kontak:</p>
                         <div class="flex flex-row">
@@ -34,30 +34,10 @@
 
 
                     </div>
-                    <button type="button"
-                            class="ml-6 text-white h-fit bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Edit Info
-                    </button>
+                   <p class="font-light text-green-300">Status: Siap menerima Proyek</p>
                 </div>
             </div>
-            {{--            Untuk Warning bila semisal portfolio kosong--}}
-            <div class="flex flex-row justify-center h-48 mb-4 mx-auto px-4 rounded bg-yellow-400 dark:bg-gray-800 container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-20 h-20 mt-14 ml">
-                    <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
-                </svg>
-                <div class="flex flex-col "><h1 class=" h-fit mt-14 ml-3 text-3xl font-extrabold">Portofolio anda masih kosong!</h1>
-                    <p class="w-25 ml-3">Tambahkan portfolio yang tim anda pernah kerjakan sebelumnya untuk menarik minat para stakeholder</p>
-                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-36 ml-3">Tambah Portfolio</button>
-                </div>
-            </div>
-            <div class="flex flex-row"><h1 class="w-fit text-black font-extrabold text-2xl mt-14">Portfolio</h1>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-9 h-9 ml-3 mt-14">
-                    <path fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z"
-                          clip-rule="evenodd"/>
-                </svg>
-                <p class="mt-14 text-sm font-bold h-fit">Tambah Portofolio</p>
-            </div>
+
 
             <div class="grid grid-cols-3 max-h-72 overflow-y-scroll  gap-4  h-auto px-3 py-3 rounded bg-gray-50 dark:bg-gray-800 container">
                 <div class="flex flex-col bg-gray-400 w-64 h-auto">

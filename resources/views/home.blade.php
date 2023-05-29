@@ -9,7 +9,7 @@
                     @if(!Auth::user()->nama)
                         <p class="text-2xl text-black">Selamat Datang!</p>
                     @else
-                    <p class="text-2xl text-black">Selamat Datang! {{ Auth::user()->nama }}</p>
+                        <p class="text-2xl text-black">Selamat Datang! {{ Auth::user()->nama }}</p>
                     @endif
                 </div>
                 <div class="flex-col items-center justify-center h-24 rounded bg-blue-600 dark:bg-gray-800">
@@ -38,7 +38,8 @@
                         </a>
                         <p class="mb-3 font-normal">Silahkan klik link berikut, dan
                             lengkapi identitas anda</p>
-                        <a href="/stake/pengaturan/{{Auth::id()}}" class="inline-flex items-center text-blue-600 hover:underline">
+                        <a href="/stake/pengaturan/{{Auth::id()}}"
+                           class="inline-flex items-center text-blue-600 hover:underline">
                             Klik Disini
                         </a>
                     </div>
@@ -48,55 +49,9 @@
 
 
             </div>
-            <div class="grid grid-cols-2 gap-4 mb-4">
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-            </div>
-            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-            </div>
+
         </div>
     </div>
-    {{-- <div class="container"> --}}
-    {{--    <div class="row justify-content-center"> --}}
-    {{--        <div class="col-md-8"> --}}
-    {{--            <div class="card"> --}}
-    {{--                <div class="card-header">{{ __('Dashboard') }}</div> --}}
 
-    {{--                <div class="card-body"> --}}
-    {{--                    @if (session('status')) --}}
-    {{--                        <div class="alert alert-success" role="alert"> --}}
-    {{--                            {{ session('status') }} --}}
-    {{--                        </div> --}}
-    {{--                    @endif --}}
-    {{--                    Anda adalah Stakeholder! --}}
-    {{--                </div> --}}
-    {{--            </div> --}}
-    {{--        </div> --}}
-    {{--    </div> --}}
-    {{-- </div> --}}
+
 @endsection

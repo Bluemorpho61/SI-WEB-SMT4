@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Enums\RoleList;
@@ -84,18 +85,24 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  \Illuminate\Http\Request  $data
-     * @return \App\Models\User
+     * @return User|\Illuminate\Http\RedirectResponse
      */
     protected function create(Request $data, RoleList $role)
     {
 
-        return User::create([
+         $user=User::create([
             'nama' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipe_user' => $role
-            
-            //TODO: Lanjut bikin controller bwt multi user. Link: https://www.itsolutionstuff.com/post/laravel-9-multi-auth-create-multiple-authentication-in-laravelexample.html
         ]);
+
+        if ($role==RoleList::STAKEHOLDER){
+            Auth::login($user);
+            return redirect()->route('stake-home');
+        }else{
+            Auth::login($user);
+            return redirect()->route('dev-home');
+        }
     }
 }

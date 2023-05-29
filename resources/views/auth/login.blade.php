@@ -83,7 +83,7 @@
                        href="{{ route('regisdev') }}">
                         <p class="w-fit h-fit mt-1">
                             Daftar Sebagai
-                            Developerr
+                            Developer
                         </p>
                     </a>
                 </div>

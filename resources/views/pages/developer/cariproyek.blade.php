@@ -7,10 +7,11 @@
                 <div class="flex items-center justify-center h-24 rounded ">
                     <p class="text-2xl text-black">Cari Proyek</p>
                 </div>
-
             </div>
+
             <div class="flex  overflow-x-auto  p-10 mb-4 rounded bg-gray-50 dark:bg-gray-800">
                 <div class="relative shadow-md sm:rounded-lg">
+                    <p class="mb-2 font-bold font-sans">Total proyek yang tersedia: {{$totalProyek}}</p>
                     <table class="w-full  text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -24,7 +25,7 @@
                                     Tenggat
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Jumlah Penawar Proyek
+                                   Status Proyek
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Action
@@ -46,7 +47,13 @@
                                     {{$data->tenggat}}
                                 </td>
                                 <td class="px-6 py-4">
-                                  NULL
+                                  @if($data->status_proyek==0)
+                                      Menunggu Penawaran
+                                    @elseif($data->status_proyek==1)
+                                      Tengah dikerjakan
+                                    @else
+                                      Selesai
+                                  @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="/dev/cari-proyek/detail-proyek/{{$data->id}}"

@@ -117,13 +117,7 @@
 
                 </a>
             </li>
-            <li>
-                <a href="{{route('kotak-m')}}"
-                   class="flex items-center p-2  rounded-lg bg-blue-800 dark:text-white hover:bg-blue-300 dark:hover:bg-gray-700">
-                    <span class="flex-1 ml-3 whitespace-nowrap">Kotak Masuk</span>
 
-                </a>
-            </li>
         </ul>
     </div>
 </aside>

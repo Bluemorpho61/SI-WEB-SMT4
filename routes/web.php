@@ -46,9 +46,10 @@ Route::group(['prefix' => 'dev'], function () {
     Route::get('/profil-tim/{id}', [DeveloperController::class, 'showTim']);
     Route::get('/cari-proyek/detail-proyek/{id}',[DeveloperController::class,'showDetailProyek']);
     Route::get('/pengaturan/{id}',[DeveloperController::class,'showPengaturan']);
+    Route::get('/daftar-proyek/progress-proyek',[DeveloperController::class,'showProgress']);
     Route::post('/tambah-profil-developer',[DeveloperController::class,'addDevInfo'])->name('add-dev');
     Route::post('/tambah-penawaran/{id}',[DeveloperController::class,'pasangPenawaran']);
-
+    Route::post('/hapus-penawaran/{id}',[DeveloperController::class,'HapusTawaran']);
 });
 
 
@@ -61,7 +62,10 @@ Route::group(['prefix' => 'stake'], function () {
     Route::get('/pengaturan/{id}', [StakeholderController::class, 'showPengaturan']);
     Route::POST('/post-profile-update/{id}', [StakeholderController::class, 'updateProfile']);
     Route::get('/detail-proyek/{id}', [StakeholderController::class, 'DetailProyek']);
+    Route::get('/detail-proyek/{id}/cek-profil/',[StakeholderController::class,'showProfilPenawar']);
     Route::post('/takedown-pengajuan/{id}',[StakeholderController::class,'destroyProyek']);
+    Route::post('/updatePengajuan/{id}',[StakeholderController::class,'updatePengajuan']);
+    Route::post('/ambil-tawaran/{id}',[StakeholderController::class,'AmbilTawaran']);
 
 });
 
